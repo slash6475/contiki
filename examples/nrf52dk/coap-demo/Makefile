@@ -1,8 +1,11 @@
 CONTIKI=../../..
 CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
 
+NRF52_WITHOUT_SOFTDEVICE=1
+$(shell export NRF52_SDK_ROOT=${CURDIR}/$(CONTIKI)/cpu/nrf52832/nrf-sdk/)
+
 ifeq ($(MAKECMDGOALS),)
-$(error Please specify whether coap-client or coap-server should be built)
+	$(error Please specify whether coap-client or coap-server should be built)
 endif
 
 ifneq ($(filter coap-client coap-client.flash, $(MAKECMDGOALS)),)
@@ -16,7 +19,6 @@ else
 CFLAGS += -DDEVICE_NAME=\"nRF52-DK-CoAP-Server\"
 endif
 
-NRF52_SDK_ROOT=$(CONTIKI)/cpu/nrf52832/nrf-sdk/
 
 # automatically build RESTful resources
 REST_RESOURCES_DIR = ./resources
