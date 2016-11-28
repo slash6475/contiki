@@ -2,7 +2,7 @@ CONTIKI=../../..
 CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
 
 NRF52_WITHOUT_SOFTDEVICE=1
-$(shell export NRF52_SDK_ROOT=${CURDIR}/$(CONTIKI)/cpu/nrf52832/nrf-sdk/)
+export NRF52_SDK_ROOT=${CURDIR}/$(CONTIKI)/cpu/nrf52832/nrf-sdk/
 
 ifeq ($(MAKECMDGOALS),)
 	$(error Please specify whether coap-client or coap-server should be built)
